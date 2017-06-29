@@ -1,0 +1,47 @@
+version: "2"
+
+services: 
+  mariadb:
+    image: mariadb
+    volumes: 
+      - ./mariadb:/docker-entrypoint-initdb.d:ro
+    environment: 
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${INDEX}
+    restart: on-failure
+    
+  elasticsearch:
+    image: elasticsearch
+    depends_on: ["mariadb"]
+    restart: on-failure
+  
+  logstash:
+    build: logstash
+    depends_on: ["elasticsearch"]
+    links: 
+      - mariadb:${MYSQL_HOST}
+      - elasticsearch:elasticsearch
+    environment: 
+      - ES_PROTO=${ES_PROTO}
+      - ES_HOST=${ES_HOST}
+      - ES_PORT=${ES_PORT}
+      - INDEX=${INDEX}
+      - MAX_TRIES=${MAX_TRIES}
+      - DELAY=${DELAY}
+      - MODE=${MODE}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+  kibana:
+    image: kibana
+    depends_on: ["elasticsearch"]
+    links: 
+      - elasticsearch:elasticsearch
+    restart: on-failure
+    environment: 
+      - ELASTICSEARCH_URL=${ES_PROTO}://${ES_HOST}:${ES_PORT}
+    ports: 
+      - 5601:5601

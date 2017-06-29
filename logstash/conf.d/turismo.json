@@ -1,0 +1,132 @@
+{
+    "template": "turismo",
+    "settings": {
+        "number_of_shards": 1
+    },
+    "mappings": {
+        "logs": {
+            "properties": {
+                "@timestamp": {
+                    "type": "date"
+                },
+                "@version": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "categoria": {
+                    "type": "long"
+                },
+                "creado": {
+                    "type": "date"
+                },
+                "email": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "id": {
+                    "type": "long"
+                },
+                "tipo": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "ubicacion": {
+                    "dynamic": true,
+                    "properties": {
+                        "coordenadas": {
+                            "type": "geo_point",
+                            "index": "not_analyzed"
+                        },
+                        "lat": {
+                            "type": "float"
+                        },
+                        "lon": {
+                            "type": "float"
+                        }
+                    }
+                },
+                "modificado": {
+                    "type": "date"
+                },
+                "nombre": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "telefono": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "provincia": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "region": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "direccion": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "ciudad": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "web": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "_id": "Lugares",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Lugares",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Georeferencia\",\"panelIndex\":1,\"row\":15,\"size_x\":6,\"size_y\":7,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Incorporación-de-lugares\",\"panelIndex\":2,\"row\":29,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Lugares-por-región\",\"panelIndex\":3,\"row\":7,\"size_x\":4,\"size_y\":4,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Top-5-provincias-con-más-lugares\",\"panelIndex\":5,\"row\":4,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Total-de-lugares\",\"panelIndex\":6,\"row\":4,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Tagcloud-de-ciudades-con-más-lugares\",\"panelIndex\":7,\"row\":22,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Distribución-por-tipo-de-lugar\",\"panelIndex\":8,\"row\":4,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Tabla-de-lugares\",\"panelIndex\":9,\"row\":11,\"size_x\":12,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Info-de-georeferencia\",\"panelIndex\":10,\"row\":22,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Heatmap-de-lugares\",\"panelIndex\":11,\"row\":15,\"size_x\":6,\"size_y\":7,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Provincia-por-region\",\"panelIndex\":12,\"row\":7,\"size_x\":8,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Ayuda\",\"panelIndex\":13,\"row\":1,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"id\":\"Ciudades-en-base-a-provincia\",\"type\":\"visualization\",\"panelIndex\":14,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":25}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"mapCenter\":[-34.95799531086791,-62.60009765624999]},\"P-11\":{\"mapCenter\":[-34.52466147177172,-61.8310546875],\"mapZoom\":4},\"P-12\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-7\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-9\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-5y/y",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Georeferencia",
+    "_type": "visualization",
+    "_source": {
+      "title": "Georeferencia",
+      "visState": "{\"title\":\"Georeferencia\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Scaled Circle Markers\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"legendPosition\":\"bottomright\",\"mapZoom\":2,\"mapCenter\":[15,5],\"wms\":{\"enabled\":true,\"url\":\"http://wms.ign.gob.ar/geoserver/ows?\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"capabaseargenmap\",\"format\":\"image/jpeg\",\"transparent\":true,\"attribution\":\"Mapas del IGN de Argentina\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"ubicacion.coordenadas\",\"autoPrecision\":true}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapCenter\":[-37.14280344371683,-61.65527343749999],\"mapZoom\":5}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Incorporación-de-lugares",
+    "_type": "visualization",
+    "_source": {
+      "title": "Incorporación de lugares",
+      "visState": "{\"title\":\"Incorporación de lugares\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Lugares\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"creado\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Fecha\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Tagcloud-de-ciudades-con-más-lugares",
+    "_type": "visualization",
+    "_source": {
+      "title": "Tagcloud de ciudades con más lugares",
+      "visState": "{\"title\":\"Tagcloud de ciudades con más lugares\",\"type\":\"tagcloud\",\"params\":{\"scale\":\"linear\",\"orientation\":\"single\",\"minFontSize\":18,\"maxFontSize\":72},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Lugares\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"ciudad.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Ciudad\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"spy\":{\"mode\":{\"name\":\"table\",\"fill\":false}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Distribución-por-tipo-de-lugar",
+    "_type": "visualization",
+    "_source": {
+      "title": "Distribución por tipo de lugar",
+      "visState": "{\"title\":\"Distribución por tipo de lugar\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"tipo.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Tipo\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"spy\":{\"mode\":{\"name\":null,\"fill\":false}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Heatmap-de-lugares",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap de lugares",
+      "visState": "{\"title\":\"Heatmap de lugares\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Heatmap\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":\"25\",\"heatBlur\":15,\"heatNormalizeData\":true,\"legendPosition\":\"bottomright\",\"mapZoom\":2,\"mapCenter\":[15,5],\"wms\":{\"enabled\":true,\"url\":\"http://wms.ign.gob.ar/geoserver/ows?\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"capabaseargenmap\",\"format\":\"image/jpeg\",\"transparent\":true,\"attribution\":\"Mapas del IGN de Argentina\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"ubicacion.coordenadas\",\"autoPrecision\":true}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapZoom\":2,\"mapCenter\":[-34.45221847282653,-61.87499999999999]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Tabla-de-lugares",
+    "_type": "visualization",
+    "_source": {
+      "title": "Tabla de lugares",
+      "visState": "{\"title\":\"Tabla de lugares\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"nombre.keyword\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Lugar\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"provincia.keyword\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Provincia\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"ciudad.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Ciudad\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Lugares-por-región",
+    "_type": "visualization",
+    "_source": {
+      "title": "Lugares por región",
+      "visState": "{\"title\":\"Lugares por región\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad de lugares\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"region.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Region\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"spy\":{\"mode\":{\"name\":null,\"fill\":false}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Top-5-provincias-con-más-lugares",
+    "_type": "visualization",
+    "_source": {
+      "title": "Top 5 provincias con más lugares",
+      "visState": "{\"title\":\"Top 5 provincias con más lugares\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad de Lugares\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"provincia.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Provincia\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Info-de-georeferencia",
+    "_type": "visualization",
+    "_source": {
+      "title": "Info de georeferencia",
+      "visState": "{\"title\":\"Info de georeferencia\",\"type\":\"markdown\",\"params\":{\"markdown\":\"# Información\\n\\nEl mapa utiliza la capa \\\"capabaseargenmap\\\" del servicio WMS del Instituto Geográfico Nacional de la República Argentina.\\n\\nLa precisión de la referencia geográfica es proporcional al zoom del mapa\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Total-de-lugares",
+    "_type": "visualization",
+    "_source": {
+      "title": "Total de lugares",
+      "visState": "{\"title\":\"Total de lugares\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"73\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Lugares\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Provincia-por-region",
+    "_type": "visualization",
+    "_source": {
+      "title": "Provincia por region",
+      "visState": "{\"title\":\"Provincia por region\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"region.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Region\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"provincia.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Provincia\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"spy\":{\"mode\":{\"name\":\"table\",\"fill\":false}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Ayuda",
+    "_type": "visualization",
+    "_source": {
+      "title": "Ayuda",
+      "visState": "{\"title\":\"Ayuda\",\"type\":\"markdown\",\"params\":{\"markdown\":\"## Ayuda\\n\\n- Hacé click en alguna visualización, sea una porción de gráfico o nombre de lugar.\\n\\n- Se puede hacer una búsqueda por cualquier campo, por ejemplo \\\"costa\\\" va a adaptar las visualizaciones a los resultados en base a ese término.\\n\\n- Puede especificarse un rango de fechas, y un tiempo de refresco de las visualizaciones en la barra superior\\n\\n- Podés editar los widgets de este dashboard, reacomodarlos, eliminarlos o incorporar nuevas visualizaciones.\\n\\n- Los mapas pueden tardar en cargar dependiendo la conexión a internet.\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Region-por-provincia",
+    "_type": "visualization",
+    "_source": {
+      "title": "Region por provincia",
+      "visState": "{\"title\":\"Region por provincia\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"provincia.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Provincia\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"ciudad.keyword\",\"size\":11,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Ciudades\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Ciudades-en-base-a-provincia",
+    "_type": "visualization",
+    "_source": {
+      "title": "Ciudades en base a provincia",
+      "visState": "{\"title\":\"Ciudades en base a provincia\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Cantidad\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"provincia.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Provincia\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"ciudad.keyword\",\"size\":11,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Ciudades\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"turismo\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]
