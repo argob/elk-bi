@@ -57,7 +57,7 @@ function connect() {
             break
         fi
         done
-        printf "$(logger ERROR ${FUNCNAME[0]}) Fallo al cargar índice en elasticsearch @ $ES_URL.\n"
+        printf "$(logger INFO ${FUNCNAME[0]}) Parando logstash\n"
 }
 
 # Chequear el estado del índice

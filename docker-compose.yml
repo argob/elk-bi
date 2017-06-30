@@ -4,7 +4,7 @@ services:
   mariadb:
     image: mariadb
     volumes: 
-      - ./mariadb:/docker-entrypoint-initdb.d:ro
+      - ./mariadb:/docker-entrypoint-initdb.d:Z
     environment: 
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_USER=${MYSQL_USER}
