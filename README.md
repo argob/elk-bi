@@ -1,6 +1,6 @@
 # sql2elk
 
-Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana
+Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana. Los datos incluidos pertenecen a lugares y establecimientos turísticos de Argentina verificados como accesibles por el Servicio Nacional de Rehabilitación y cubren los tipos de campo fecha, entero, caracteres y punto geográfico.
 
 El stack está compuesto de 4 containers
 - [MariaDB](https://github.com/docker-library/mariadb)
@@ -49,10 +49,18 @@ $ docker-compose up
 Ir a "Dashboards" -> "Open" -> "Lugares"
 
 ### Eliminar contenedores
-Para eliminar los contenedores, 
+
+Para eliminar los contenedores
+```shell
+docker-compose down
+```
 
 ## Demo 
 
+#### Levantar el stack
 [![asciicast](https://asciinema.org/a/3W3XWJdRsYcPk441INPBsYVy8.png)](https://asciinema.org/a/3W3XWJdRsYcPk441INPBsYVy8)
 
 Dejar el stack en ejecución, no es necesario presionar Ctrl + C
+
+#### Configurar índice y visualizaciones
+![Kibana](https://www.snr.gob.ar/kibana.gif)
