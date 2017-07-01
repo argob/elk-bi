@@ -44,7 +44,7 @@ $ docker-compose up
 4. Ir a la pestaña "Saved Objects" y hacer click en "Import".
 5. Seleccionar "visualizaciones.json", presente en el repositorio.
 
-### Para ver el dashboard:
+### Dashboard:
 
 Ir a "Dashboards" -> "Open" -> "Lugares"
 
@@ -52,7 +52,7 @@ Ir a "Dashboards" -> "Open" -> "Lugares"
 
 Para eliminar los contenedores
 ```shell
-docker-compose down
+$ docker-compose down
 ```
 
 ## Demo 
