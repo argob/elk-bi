@@ -64,3 +64,4 @@ Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 
 #### Configurar índice y visualizaciones
 ![Kibana](https://www.snr.gob.ar/kibana.gif)
+![Kibana 2](https://www.snr.gob.ar/kibana2.gif)
