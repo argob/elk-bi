@@ -2,11 +2,24 @@
 
 Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana. Los datos incluidos pertenecen a lugares y establecimientos turísticos de Argentina verificados como accesibles por el Servicio Nacional de Rehabilitación y cubren los tipos de campo fecha, entero, caracteres y punto geográfico.
 
+- Contenido:
+  - [Introducción](#introduci%C3%B3n)
+  - [Requerimientos](#requerimientos)
+  - [Configuración](#configuraci%C3%B3n)
+  - [Instalación](#instalaci%C3%B3n)
+  - [Demo](#demo)
+  - [Desarrollo](#desarrollo)
+  - [Contacto](#contacto)
+
+## Introducción
+
 El stack está compuesto de 4 containers
 - [MariaDB](https://github.com/docker-library/mariadb)
 - [Elasticsearch](https://github.com/docker-library/elasticsearch)
 - [Logstash](https://github.com/docker-library/logstash)
 - [Kibana](https://github.com/docker-library/kibana)
+
+Los datos parseados por logstash y enviados a elasticsearch provienen de la ejecución de la sentencia "SELECT * FROM lugares_resueltos;" que es una vista que incluye los joins necesarios con tablas referenciales para obtener el valor asociado (por ejemplo: provincia). La tabla principal es "lugares".
 
 ## Requerimientos
 
@@ -29,7 +42,7 @@ El archivo .env contiene variables de entorno que sirven para configurar el stac
 - **ELASTICSEARCH_URL**: generalmente la URL compuesta por los 3 anteriores.
 - **MODE**: el modo de ejecución de logstash, puede ser "bulk" o "tracker", en caso de no especificarse un modo váido, logstash tomará la decisión del modo en base a la existencia del índice y cantidad de documentos.
 
-## Ejecución
+## Instalación
 
 ```shell
 $ git clone https://github.com/argob/sql2elk
@@ -65,3 +78,22 @@ Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 #### Configurar índice y visualizaciones
 ![Kibana](https://www.snr.gob.ar/kibana.gif)
 ![Kibana 2](https://www.snr.gob.ar/kibana2.gif)
+
+## Desarrollo 
+
+El orden de ejecución de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
+
+El archivo (turismo)[https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json] contiene las propiedades del índice, tales como el nombre y tipo de campos 
+
+Los pasos hasta llegar a la visualización son los siguientes:
+1. Se descargan las imágenes del repositorio de Docker (si es que no existen previamente).
+2. Se construye la imagen de logstash con los archivos de configuración necesarios: [logstash-bulk.conf](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/logstash-bulk.conf), [logstash-tracker.conf](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/logstash-tracker.conf) y la plantilla [turismo.json](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json).
+3. Arranca el contenedor de MariaDB con el dump montado en /docker-entrypoint-initdb.d para que pueda ser inicializada.
+4. Arranca Elasticsearch
+5. Arranca logstash e intenta conectarse a elasticsearch con el intervalo especificado en la variable **DELAY** hasta que se alcance el valor de **MAX_TRIES**.
+6. Se chequea la existencia del índice especificado en **INDEX** y la cantidad de documentos para determinar que archivo de configuración debe ser utilizado
+//TODO
+
+## Contacto
+Te invitamos a creanos un issue en caso de que encuentres algún bug o tengas feedback respecto al proyecto.
+Para todo lo demás, podés mandarnos tu comentario o consulta a [informatica@snr.gob.ar](mailto:informatica@snr.gob.ar)
