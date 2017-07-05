@@ -81,18 +81,29 @@ Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 
 ## Desarrollo 
 
-El orden de ejecución de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
+El orden de arranque de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
 
-El archivo (turismo)[https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json] contiene las propiedades del índice, tales como el nombre y tipo de campos 
+El archivo (turismo.json)[https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json] es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
+
+Logstash tiene 2 modos de ejecución:
+- bulk: Ejecuta la sentencia "SELECT * FROM lugares_resueltos", en otras palabras trae todas las filas.
+- tracker: Ejecuta la sentencia "SELECT * FROM lugares_resueltos WHERE modificado > :sql_last_run" siendo sql_last_run un archivo que contiene la fecha y hora de la última ejecución de logstash. Si alguna fila tiene el campo "modificado" superior a la última ejecución, logstash parseara solamente este registro.
+
+El modo puede ser seteado mediante la variable **MODE**, si la misma está vacía o tiene algún valor distinto a los modos enunciados arriba se definirá el mismo en base a la existencia del índice y/o cantidad de documentos.
 
 Los pasos hasta llegar a la visualización son los siguientes:
 1. Se descargan las imágenes del repositorio de Docker (si es que no existen previamente).
 2. Se construye la imagen de logstash con los archivos de configuración necesarios: [logstash-bulk.conf](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/logstash-bulk.conf), [logstash-tracker.conf](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/logstash-tracker.conf) y la plantilla [turismo.json](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json).
 3. Arranca el contenedor de MariaDB con el dump montado en /docker-entrypoint-initdb.d para que pueda ser inicializada.
-4. Arranca Elasticsearch
+4. Arranca Elasticsearch.
 5. Arranca logstash e intenta conectarse a elasticsearch con el intervalo especificado en la variable **DELAY** hasta que se alcance el valor de **MAX_TRIES**.
-6. Se chequea la existencia del índice especificado en **INDEX** y la cantidad de documentos para determinar que archivo de configuración debe ser utilizado
-//TODO
+6. Se chequea la existencia del índice especificado en **INDEX** y la cantidad de documentos para determinar que archivo de configuración debe ser utilizado.
+7. En base a la cantidad de documentos se setea el modo de ejecución de logstash, si hay 0 documentos se ejecutara en modo bulk, de lo contrario en tracker a menos que la variable **MODE** tenga algún modo válido.
+8. Logstash ejecuta la consulta, parsea los campos de las filas, en el caso de "ubicacion.coordeanas", se genera un array con los valores de "lat" y "lon".
+9. Si es modo bulk, el contenedor se detiene, si es modo tracker sigue en ejecución.
+
+### Utilizar otros datos
+Siguiendo el ejemplo, puede crearse un índice con datos propios, para ello se necesita el dump de una base de datos y una plantilla para que mapee los mismos, ademas de alterar la variable **INDEX**. Los nombres de los campos de la plantilla deben coincidir con los de las columnas de la tabla o vista.
 
 ## Contacto
 Te invitamos a creanos un issue en caso de que encuentres algún bug o tengas feedback respecto al proyecto.
