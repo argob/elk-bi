@@ -106,5 +106,5 @@ Los pasos hasta llegar a la visualización son los siguientes:
 Siguiendo el ejemplo, puede crearse un índice con datos propios, para ello se necesita el dump de una base de datos y una plantilla para que mapee los mismos, ademas de alterar la variable **INDEX**. Los nombres de los campos de la plantilla deben coincidir con los de las columnas de la tabla o vista.
 
 ## Contacto
-Te invitamos a creanos un issue en caso de que encuentres algún bug o tengas feedback respecto al proyecto.
-Para todo lo demás, podés mandarnos tu comentario o consulta a [informatica@snr.gob.ar](mailto:informatica@snr.gob.ar)
+Te invitamos a contactarnos en caso de que encuentres algún defecto (bug) o tengas feedback respecto al proyecto.
+Para todo lo demás, podés enviarnos tu comentario o consulta a [informatica@snr.gob.ar](mailto:informatica@snr.gob.ar)
