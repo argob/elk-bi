@@ -83,7 +83,7 @@ Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 
 El orden de arranque de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
 
-El archivo (turismo.json)[https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json] es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
+El archivo [turismo.json](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json) es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
 
 Logstash tiene 2 modos de ejecución:
 - bulk: Ejecuta la sentencia "SELECT * FROM lugares_resueltos", en otras palabras trae todas las filas.
