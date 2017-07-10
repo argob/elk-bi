@@ -13,7 +13,10 @@ Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los ca
 
 ## Introducción
 
-El stack está compuesto de 4 containers
+### ¿Qué es ELK?
+Es un stack de componentes open source que comprende una base de datos clusterizable del modelo motor de búsqueda y de esquema libre (**E**lasticsearch), un herramienta que recolecta datos de distintas fuentes capaz de parsearlos, mutarlos y grabarlos en Elasticsearch (**L**ogstash) y una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos (**K**ibana). 
+
+Este stack está compuesto de 4 contenedores:
 - [MariaDB](https://github.com/docker-library/mariadb)
 - [Elasticsearch](https://github.com/docker-library/elasticsearch)
 - [Logstash](https://github.com/docker-library/logstash)
