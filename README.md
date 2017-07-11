@@ -1,9 +1,5 @@
-# sql2elk
-
-Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana. Los datos incluidos pertenecen a lugares y establecimientos turísticos de Argentina verificados como accesibles por el Servicio Nacional de Rehabilitación y cubren los tipos de campo fecha, entero, caracteres y punto geográfico.
-
 - Contenido:
-  - [Introducción](#introduci%C3%B3n)
+  - [Introducción](#introducción)
   - [Requerimientos](#requerimientos)
   - [Configuración](#configuraci%C3%B3n)
   - [Instalación](#instalaci%C3%B3n)
@@ -84,6 +80,9 @@ Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 
 ## Desarrollo 
 
+#### sql2elk
+Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana. Los datos incluidos pertenecen a lugares y establecimientos turísticos de Argentina verificados como accesibles por el Servicio Nacional de Rehabilitación y cubren los tipos de campo fecha, entero, caracteres y punto geográfico.
+
 El orden de arranque de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
 
 El archivo [turismo.json](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json) es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
@@ -107,6 +106,8 @@ Los pasos hasta llegar a la visualización son los siguientes:
 
 ### Utilizar otros datos
 Siguiendo el ejemplo, puede crearse un índice con datos propios, para ello se necesita el dump de una base de datos y una plantilla para que mapee los mismos, ademas de alterar la variable **INDEX**. Los nombres de los campos de la plantilla deben coincidir con los de las columnas de la tabla o vista.
+
+
 
 ## Contacto
 Te invitamos a contactarnos en caso de que encuentres algún defecto (bug) o tengas feedback respecto al proyecto.
