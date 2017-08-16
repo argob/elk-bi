@@ -85,7 +85,7 @@ Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los ca
 
 El orden de arranque de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
 
-El archivo [turismo.json](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json) es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
+El archivo [turismo.json](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/turismo.json) es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
 
 Logstash tiene 2 modos de ejecución:
 - bulk: Ejecuta la sentencia "SELECT * FROM lugares_resueltos", en otras palabras trae todas las filas.
@@ -95,7 +95,7 @@ El modo puede ser seteado mediante la variable **MODE**, si la misma está vací
 
 Los pasos hasta llegar a la visualización son los siguientes:
 1. Se descargan las imágenes del repositorio de Docker (si es que no existen previamente).
-2. Se construye la imagen de logstash con los archivos de configuración necesarios: [logstash-bulk.conf](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/logstash-bulk.conf), [logstash-tracker.conf](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/logstash-tracker.conf) y la plantilla [turismo.json](https://github.com/fernet0/sql2elk/blob/master/logstash/conf.d/turismo.json).
+2. Se construye la imagen de logstash con los archivos de configuración necesarios: [logstash-bulk.conf](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/logstash-bulk.conf), [logstash-tracker.conf](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/logstash-tracker.conf) y la plantilla [turismo.json](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/turismo.json).
 3. Arranca el contenedor de MariaDB con el dump montado en /docker-entrypoint-initdb.d para que pueda ser inicializada.
 4. Arranca Elasticsearch.
 5. Arranca logstash e intenta conectarse a elasticsearch con el intervalo especificado en la variable **DELAY** hasta que se alcance el valor de **MAX_TRIES**.
