@@ -13,23 +13,17 @@
 
 Es un stack de componentes open source que comprende:
 
-- **E**lasticsearch: una base de datos clusterizable del modelo motor de búsqueda y de esquema libre
-- **L**ogstash: una herramienta que recolecta datos de distintas fuentes capaz de parsearlos, mutarlos y grabarlos en Elasticsearch
-- **K**ibana: una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos 
+- [**E**lasticsearch](https://github.com/docker-library/elasticsearch) - Una base de datos clusterizable del modelo motor de búsqueda y de esquema libre
+- [**L**ogstash](https://github.com/docker-library/logstash) - Una herramienta que recolecta datos de distintas fuentes capaz de parsearlos, mutarlos y grabarlos en Elasticsearch
+- [**K**ibana](https://github.com/docker-library/kibana) - Una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos  
+- [MariaDB](https://github.com/docker-library/mariadb) - Un motor de base de datos
 
-Este stack está compuesto de 4 contenedores:
-
-- [MariaDB](https://github.com/docker-library/mariadb)
-- [Elasticsearch](https://github.com/docker-library/elasticsearch)
-- [Logstash](https://github.com/docker-library/logstash)
-- [Kibana](https://github.com/docker-library/kibana)
-
-Los datos parseados por logstash y enviados a elasticsearch provienen de la ejecución de la sentencia "SELECT * FROM lugares_resueltos;" que es una vista que incluye los joins necesarios con tablas referenciales para obtener el valor asociado (por ejemplo: provincia). La tabla principal es "lugares".
+Los datos parseados por Logstash y enviados a Elasticsearch provienen de la ejecución de la sentencia `SELECT * FROM lugares_resueltos;` que es una vista que incluye los joins necesarios con tablas referenciales para obtener el valor asociado (por ejemplo: provincia). La tabla principal es "lugares".
 
 ## Requerimientos
 
-- docker>=1.10
-- docker-compose>=1.7.1
+- docker >= 1.10
+- docker-compose >= 1.7.1
 
 ## Configuración
 
@@ -69,6 +63,7 @@ Ir a "Dashboards" -> "Open" -> "Lugares"
 ### Eliminar contenedores
 
 Para eliminar los contenedores
+
 ```shell
 $ docker-compose down
 ```
@@ -76,17 +71,20 @@ $ docker-compose down
 ## Demo 
 
 #### Levantar el stack
+
 [![asciicast](https://asciinema.org/a/3W3XWJdRsYcPk441INPBsYVy8.png)](https://asciinema.org/a/3W3XWJdRsYcPk441INPBsYVy8)
 
 Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 
-
 #### Configurar índice y visualizaciones
+
 ![Kibana](https://www.snr.gob.ar/kibana.gif)
 ![Kibana 2](https://www.snr.gob.ar/kibana2.gif)
 
-## Desarrollo 
+## Desarrollo
+
 #### sql2elk
+
 Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana. Los datos incluidos pertenecen a lugares y establecimientos turísticos de Argentina verificados como accesibles por el Servicio Nacional de Rehabilitación y cubren los tipos de campo fecha, entero, caracteres y punto geográfico.
 
 El orden de arranque de los contenedores es MariaDB - Logstash - Elasticsearch - Kibana
@@ -94,6 +92,7 @@ El orden de arranque de los contenedores es MariaDB - Logstash - Elasticsearch -
 El archivo [turismo.json](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/turismo.json) es la plantilla que contiene las propiedades del índice, tales como el nombre y tipo de campos.
 
 Logstash tiene 2 modos de ejecución:
+
 - bulk: Ejecuta la sentencia "SELECT * FROM lugares_resueltos", en otras palabras trae todas las filas.
 - tracker: Ejecuta la sentencia "SELECT * FROM lugares_resueltos WHERE modificado > :sql_last_run" siendo sql_last_run un archivo que contiene la fecha y hora de la última ejecución de logstash. Si alguna fila tiene el campo "modificado" superior a la última ejecución, logstash parseara solamente este registro.
 
@@ -111,10 +110,10 @@ Los pasos hasta llegar a la visualización son los siguientes:
 9. Si es modo bulk, el contenedor se detiene, si es modo tracker sigue en ejecución.
 
 ### Utilizar otros datos
+
 Siguiendo el ejemplo, puede crearse un índice con datos propios, para ello se necesita el dump de una base de datos y una plantilla para que mapee los mismos, ademas de alterar la variable **INDEX**. Los nombres de los campos de la plantilla deben coincidir con los de las columnas de la tabla o vista.
 
-
-
 ## Contacto
+
 Te invitamos a contactarnos en caso de que encuentres algún defecto (bug) o tengas feedback respecto al proyecto.
 Para todo lo demás, podés enviarnos tu comentario o consulta a [informatica@snr.gob.ar](mailto:informatica@snr.gob.ar)
