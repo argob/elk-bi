@@ -1,4 +1,4 @@
-### Contenido
+## Contenido
 
 - [Introducción](#introducción)
 - [Requerimientos](#requerimientos)
