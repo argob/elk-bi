@@ -71,20 +71,20 @@ $ docker-compose down
 
 ## Demo 
 
-#### Levantar el stack
+### Levantar el stack
 
 [![asciicast](https://asciinema.org/a/3W3XWJdRsYcPk441INPBsYVy8.png)](https://asciinema.org/a/3W3XWJdRsYcPk441INPBsYVy8)
 
 Dejar el stack en ejecución, no es necesario presionar Ctrl + C
 
-#### Configurar índice y visualizaciones
+### Configurar índice y visualizaciones
 
 ![Kibana](https://www.snr.gob.ar/kibana.gif)
 ![Kibana 2](https://www.snr.gob.ar/kibana2.gif)
 
 ## Desarrollo
 
-#### sql2elk
+### sql2elk
 
 Ejemplo básico sobre importar datos de una BD a Elasticsearch, manipular los campos con Logstash y hacer visualizaciones en Kibana. Los datos incluidos pertenecen a lugares y establecimientos turísticos de Argentina verificados como accesibles por el Servicio Nacional de Rehabilitación y cubren los tipos de campo fecha, entero, caracteres y punto geográfico.
 
