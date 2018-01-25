@@ -10,9 +10,15 @@
 ## Introducción
 
 ### ¿Qué es ELK?
-Es un stack de componentes open source que comprende una base de datos clusterizable del modelo motor de búsqueda y de esquema libre (**E**lasticsearch), un herramienta que recolecta datos de distintas fuentes capaz de parsearlos, mutarlos y grabarlos en Elasticsearch (**L**ogstash) y una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos (**K**ibana). 
+
+Es un stack de componentes open source que comprende:
+
+- **E**lasticsearch: una base de datos clusterizable del modelo motor de búsqueda y de esquema libre
+- **L**ogstash: una herramienta que recolecta datos de distintas fuentes capaz de parsearlos, mutarlos y grabarlos en Elasticsearch
+- **K**ibana: una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos 
 
 Este stack está compuesto de 4 contenedores:
+
 - [MariaDB](https://github.com/docker-library/mariadb)
 - [Elasticsearch](https://github.com/docker-library/elasticsearch)
 - [Logstash](https://github.com/docker-library/logstash)
