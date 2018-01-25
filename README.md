@@ -1,21 +1,22 @@
-### Contenido:
-  - [Introducción](#introducción)
-  - [Requerimientos](#requerimientos)
-  - [Configuración](#configuraci%C3%B3n)
-  - [Instalación](#instalaci%C3%B3n)
-  - [Demo](#demo)
-  - [Desarrollo](#desarrollo)
-  - [Contacto](#contacto)
+### Contenido
+
+- [Introducción](#introducción)
+- [Requerimientos](#requerimientos)
+- [Configuración](#configuraci%C3%B3n)
+- [Instalación](#instalaci%C3%B3n)
+- [Demo](#demo)
+- [Desarrollo](#desarrollo)
+- [Contacto](#contacto)
 
 ## Introducción
 
 ### ¿Qué es ELK?
 
-Es un stack de componentes open source que comprende:
+**ELK** (por Elasticsearch-Logstash-Kibana) es un stack de componentes open source que comprende:
 
-- [**E**lasticsearch](https://github.com/docker-library/elasticsearch) - Una base de datos clusterizable del modelo motor de búsqueda y de esquema libre
-- [**L**ogstash](https://github.com/docker-library/logstash) - Una herramienta que recolecta datos de distintas fuentes capaz de parsearlos, mutarlos y grabarlos en Elasticsearch
-- [**K**ibana](https://github.com/docker-library/kibana) - Una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos  
+- [Elasticsearch](https://github.com/docker-library/elasticsearch) - Un motor de búsqueda
+- [Logstash](https://github.com/docker-library/logstash) - Una herramienta que recolecta datos de distintas fuentes capaz de analizarlos, mutarlos y grabarlos en Elasticsearch
+- [Kibana](https://github.com/docker-library/kibana) - Una interfaz web que da la posibilidad de realizar visualizaciones y búsquedas con la base de datos
 - [MariaDB](https://github.com/docker-library/mariadb) - Un motor de base de datos
 
 Los datos parseados por Logstash y enviados a Elasticsearch provienen de la ejecución de la sentencia `SELECT * FROM lugares_resueltos;` que es una vista que incluye los joins necesarios con tablas referenciales para obtener el valor asociado (por ejemplo: provincia). La tabla principal es "lugares".
@@ -99,6 +100,7 @@ Logstash tiene 2 modos de ejecución:
 El modo puede ser seteado mediante la variable **MODE**, si la misma está vacía o tiene algún valor distinto a los modos enunciados arriba se definirá el mismo en base a la existencia del índice y/o cantidad de documentos.
 
 Los pasos hasta llegar a la visualización son los siguientes:
+
 1. Se descargan las imágenes del repositorio de Docker (si es que no existen previamente).
 2. Se construye la imagen de logstash con los archivos de configuración necesarios: [logstash-bulk.conf](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/logstash-bulk.conf), [logstash-tracker.conf](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/logstash-tracker.conf) y la plantilla [turismo.json](https://github.com/argob/elk-bi/blob/master/logstash/conf.d/turismo.json).
 3. Arranca el contenedor de MariaDB con el dump montado en /docker-entrypoint-initdb.d para que pueda ser inicializada.
